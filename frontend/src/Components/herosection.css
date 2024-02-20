@@ -37,6 +37,7 @@ video {
   
   .hero-btns .btn {
     margin: 6px;
+    margin-right: 10px;
   }
   
   .fa-play-circle {

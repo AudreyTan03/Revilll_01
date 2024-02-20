@@ -1,41 +1,26 @@
-import React from "react";
-import Header from "./Components/Header";
-import Footer from "./Components/Footer";
-import "./bootstrap.min.css";
-import { Container } from "react-bootstrap";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Productscreen from "./Screens/ProductScreen";
-import LoginScreen from "./Screens/LoginScreen";
-import RegisterScreen from "./Screens/RegisterScreen";
-import CartScreen from "./Screens/CartScreen";
-import ProductHome from "./Screens/ProductHomeScreen";
-// import { SignIn } from "./Screens/SignIn";
-import Home from "./Screens/HomeScreen";
-import RequestChangePass from "./Screens/RequestChangepass";
-import ConfirmChangePass from "./Screens/ConfirmChangepass";
-// need mag kakasunod amp
+import React from 'react';
+import './App.css';
+import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './components/pages/Home';
+import HeroSection from './components/HeroSection';
+import Course1 from './components/Course1';
 
+
+ 
 function App() {
   return (
+    <>
     <Router>
-      <Header />
-        <Container>
-          <Routes>
-            <Route path='/login' element={<LoginScreen />} />
-            <Route path= '/cart' element={<CartScreen/>}/>
-            <Route path='/register' element={<RegisterScreen />} />
-            <Route path='/request-changepass' element={<RequestChangePass />} />
-            <Route path='/confirm-changepass/:uid/:token' element={<ConfirmChangePass />} />
-            <Route path = "/products" element={<ProductHome />} exact />
-            <Route path = "/product/:id" element= {<Productscreen />} />
-            {/* <Route path='/sign-in' element={<SignIn />} /> */}
-            <Route path='/' element={<Home />} />
-
-
-          </Routes>
-        </Container>
-      <Footer/>
-    </Router>
+      <Navbar />
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <HeroSection />
+        <Course1 />
+      </Switch>
+      </Router>
+    </>
+    
   );
 }
 
