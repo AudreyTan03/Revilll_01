@@ -18,6 +18,10 @@ import {
     USER_SET_ROLE_FAIL
 } from '../constants/userConstants';
 
+const instance = axios.create({
+    baseURL: "http://127.0.0.1:8000/",
+  });
+
 export const register = (name, email, password, userType, confirmPassword) => async (dispatch) => {
     try {
         dispatch({ type: USER_REGISTER_REQUEST });
@@ -26,8 +30,8 @@ export const register = (name, email, password, userType, confirmPassword) => as
                 'Content-Type': 'application/json',
             },
         };
-        const { data } = await axios.post(
-            'http://127.0.0.1:8000/api/users/register/',
+        const { data } = await instance.post(
+            'api/users/register/',
             { name, email, password, password2: confirmPassword, user_type: userType }, // Include confirmPassword as password2
             config
         );
@@ -64,8 +68,8 @@ export const login = (email, password) => async (dispatch) => {
                 'Content-Type': 'application/json',
             },
         };
-        const { data } = await axios.post(
-            'http://127.0.0.1:8000/api/users/login/',
+        const { data } = await instance.post(
+            'api/users/login/',
             { email, password },
             config
         );
@@ -110,8 +114,8 @@ export const sendChangePassword = (password, password2, token) => async (dispatc
                 'Content-Type': 'application/json',
             },
         };
-        const { data } = await axios.post(
-            'http://127.0.0.1:8000/api/changepassword/',
+        const { data } = await instance.post(
+            'api/changepassword/',
             { password, password2 },
             config
         );
@@ -137,8 +141,8 @@ export const confirmChangePassword = (password, password2, uid, token) => async 
                 'Content-Type': 'application/json',
             },
         };
-        const { data } = await axios.post(
-            `http://127.0.0.1:8000/api/reset-password/${uid}/${token}`,
+        const { data } = await instance.post(
+            `api/reset-password/${uid}/${token}`,
             { password, password2 },
             config
         );
